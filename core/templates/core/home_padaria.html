@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos Disponíveis</title>
+</head>
+<body>
+    <h1>Bem vindo, {{ user.username }}</h1>
+    <p><a href="{% url 'logout' %}">Sair</a></p>
+
+    <form action="{% url "criar_fornada" %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Começar fornada</button>
+    </form>
+
+    <h1>Produtos</h1>
+    <ul>
+        {% for produto in produtos %}
+            <li>
+                <p><strong>{{ produto.nome }}</strong></p>
+                <p>{{ produto.descricao }}</p>
+            </li>
+            {% empty %}
+                <li>Nenhum produto registrado até o momento.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
