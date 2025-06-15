@@ -1,0 +1,15 @@
+{% include "global/partials/head.html" %}
+
+<body>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="alert {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% block bodyContent %}{% endblock bodyContent %}
+</body>
+</html>
