@@ -1,0 +1,16 @@
+{% extends "global/base.html" %}
+
+{% block bodyContent %}
+    <main class="container">
+        <h2>Cadastro</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <p>Já possui conta? Faça <a href="{% url "login" %}">login</a></p>
+    </main>
+{% endblock bodyContent %}
