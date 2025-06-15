@@ -29,8 +29,9 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', core_views.sair, name='logout'),
 
+    # Cadastro
+    path('register/', core_views.cadastro, name='cadastro'),
+    
     # Views HTML
     path('', core_views.index, name='index'),
-    path('padarias/<int:padaria_id>/inscrever/', core_views.inscrever_usuario_padaria, name='inscrever'),
-    path('padarias/<int:padaria_id>/desinscrever/', core_views.desinscrever_usuario_padaria, name='desinscrever'),
 ]
