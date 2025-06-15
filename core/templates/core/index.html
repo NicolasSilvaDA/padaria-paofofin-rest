@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padarias Disponíveis</title>
+</head>
+<body>
+    <h1>Bem vindo, {{ user.username }}</h1>
+    <p><a href="{% url 'logout' %}">Sair</a></p>
+
+    <h1>Padarias</h1>
+    <ul>
+        {% for padaria in padarias %}
+            <li>
+                <p><strong>{{ padaria.nome }}</strong></p>
+                <p>{{ padaria.endereco }}</p>
+
+                {% if padaria.id in inscricoes %}
+                    (inscrito)
+                    <form action="{% url "desinscrever" padaria.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Desinscrever-se</button>
+                    </form>
+                {% else %}
+                    <form action="{% url 'inscrever' padaria.id %}" method="post" >
+                        {% csrf_token %}
+                        <button type="submit">Inscrever-se</button>
+                    </form>
+                {% endif %}
+            </li>
+            {% empty %}
+                <li>Nenhuma padaria registrada no momento.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
